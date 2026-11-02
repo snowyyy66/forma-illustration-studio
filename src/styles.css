@@ -25,5 +25,9 @@ html[data-theme="dark"]{--field-bg:#25222b;--field-border:#403b48;--field-placeh
 .auth-error:not(:empty){padding:9px 11px;border:1px solid var(--error-border);border-radius:6px;background:var(--error-bg)}
 html[data-theme="dark"] .forma-field .modal-input{background:var(--field-bg);border-color:var(--field-border)}
 @media(prefers-reduced-motion:reduce){.forma-field .modal-input{transition:none}}
+.account-shortcut{background:var(--violet-soft);color:var(--violet);font-size:16px}
+.account-shortcut:hover{background:#e4def8;color:#5948b2}
+html[data-theme="dark"] .account-shortcut{background:#39334c;color:#c2b6ff}
+html[data-theme="dark"] .account-shortcut:hover{background:#47405c}
 /* Align card actions to the exact center of their hit targets */
 .component-card .add-card,.component-card .edit-card{display:grid;place-items:center;padding:0;line-height:1;border-radius:6px}.component-card .add-card{font-size:16px}.component-card .edit-card{font-size:12px}
