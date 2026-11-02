@@ -1,35 +1,32 @@
-# Illustration Studio — design
+# Forma — updated design and implementation notes
 
 ## Intent
 
-Build a Vercel-ready web prototype that lets a designer assemble vector illustrations from the supplied SVG boards, recolor them with a selected palette, choose a detail size and canvas format, and export an editable SVG.
+A static web editor for arranging editable SVG components from the user's supplied boards. It is intended as a test-assignment prototype that runs locally or on Vercel, without a server or account setup.
 
-## Goals
+## Required behavior
 
-- Keep all artwork as SVG paths and preserve component proportions.
-- Provide component search by object name and by metaphor/idea using local semantic tags.
-- Support primary and monochrome background roles, two detail sizes, and three palettes.
-- Allow adding, moving, rotating, duplicating, deleting, ordering, and recoloring objects.
-- Include three example compositions and SVG export.
+- Read the supplied L and S SVG libraries and preserve vector paths, colors, and viewBox geometry.
+- Search by component name/tags or by a metaphor expanded through a local concept dictionary.
+- Allow manual placement, move, rotate, duplicate, delete, layer ordering, role changes, canvas format selection, palette changes, and SVG export.
+- Main objects follow the selected palette. Background objects render with a monochrome palette tint. Canvas background uses the selected background color.
+- Individual object scale is fixed. Format changes apply a shared uniform scale and position conversion to the composition.
+- Save compact scene state and library names/tags in browser localStorage.
 
-## Constraints and non-goals
+## Approaches
 
-- Only reuse path geometry from the three unique supplied SVG boards; do not generate replacement artwork.
-- The boards have no text labels and mostly lack per-object groups. The application will extract candidate regions by vector geometry and allow a person to review/rename them.
-- MVP data stays in the browser. It does not require account, database, or AI API keys.
-- The metaphor flow uses local semantic tags and keyword matching. ChatGPT assisted implementation; no generated assets are included.
-
-## Approaches considered
-
-1. Figma plugin: direct access to native layers, but requires Figma connection and plugin setup.
-2. Client-side web app (chosen): hosts easily on Vercel, imports the supplied boards, and keeps a self-contained vector editor without account infrastructure.
-3. Hosted catalog and collaboration service: durable shared library but adds database, upload, and authentication scope beyond the test assignment.
+1. Figma plugin: strongest access to Figma components but requires plugin setup and the user requested a hosted website.
+2. Static browser editor (selected): deployable to Vercel with no secrets or backend, reads the supplied SVGs directly, exports SVG.
+3. Hosted catalog/editor: enables shared metadata and durable projects but requires auth/database work beyond this prototype.
 
 ## Architecture
 
-Static HTML/CSS/JavaScript served from `public/` on Vercel. The original SVG boards are immutable source assets. At runtime the browser parses their vector geometry, groups nearby paths into candidate components, and stores component metadata and editor state locally. Composition objects reference vector snippets and transformations; export writes a new SVG document with vector paths, layer order, palette colors, and a format-specific viewBox.
+The source SVG files under `assets/source/` remain untouched. Browser DOM APIs compute path geometry and candidate clusters, retain path attributes and source definitions, and namespace definition IDs when rendering/exporting. Layer state stores references to catalog items rather than duplicating SVG path data. Local palette matching remaps source colors, and role changes recolor background components monochromatically. SVG export composes vector paths and layer transforms into a new document. Metadata and projects remain local to the browser.
 
-## Decisions left to implementation
+## Important source limitation
 
-- Candidate grouping thresholds and component names should be treated as editable suggestions because semantic labels are absent from the source exports.
-- The two source boards with portrait artboards are mapped to the two detail sizes; if their intended size labels differ, the mapping can be changed in catalog metadata.
+The source boards contain thousands of flattened paths and almost no object labels or groups. Spatial clustering can split or merge a visual object. Therefore the generated catalog is a set of candidates that must be visually reviewed and tagged before semantic assembly can be trusted. The web app must not claim that unreviewed candidates are exact whole source objects. A production-quality guarantee requires either a curated per-object manifest from the designer or manual review of every extracted candidate.
+
+## AI use
+
+ChatGPT/Codex supported requirements analysis, implementation, and code review. Runtime metaphor search is a deterministic local dictionary applied only to user-confirmed catalog tags. No external AI API or generated artwork is included.

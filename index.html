@@ -15,7 +15,7 @@
         <div class="workspace-switch"><span class="workspace-avatar">И</span><span><b>Иллюстрации</b><small>личное пространство</small></span><span class="chevron">⌄</span></div>
         <div class="side-label">РАБОЧЕЕ МЕСТО</div>
         <button class="side-link active"><span class="nav-icon grid-icon">▦</span>Конструктор <span class="side-count" id="sidebar-count">—</span></button>
-        <button class="side-link" id="open-library"><span class="nav-icon">◫</span>Библиотека <span class="side-count">20</span></button>
+        <button class="side-link" id="open-library"><span class="nav-icon">◫</span>Библиотека <span class="side-count" id="library-nav-count">—</span></button>
         <button class="side-link" id="open-ideas"><span class="nav-icon">✳</span>Примеры</button>
         <div class="side-label side-label-spaced">ВАШ ПРОЕКТ</div>
         <button class="side-link project-link"><span class="project-dot peach"></span>Смысл в деталях</button>
@@ -38,7 +38,7 @@
             <div class="panel-heading"><div><div class="eyebrow">РАБОЧИЙ НАБОР</div><h1>Собери идею</h1></div><button class="dots-button" aria-label="Меню">···</button></div>
             <div class="mode-switch"><button class="mode-tab active" data-mode="meaning">По смыслу</button><button class="mode-tab" data-mode="object">По объекту</button></div>
             <div class="search-box"><span class="search-icon">⌕</span><input id="search-input" placeholder="Например, «новое начало»" autocomplete="off" /><kbd>⌘ K</kbd></div>
-            <div class="search-hint" id="search-hint"><span class="sparkle">✳</span> Добавь объекту имя и теги двойным кликом</div>
+            <div class="search-hint" id="search-hint"><span class="sparkle">✳</span> Дважды кликни по компоненту, чтобы задать имя и теги для умного подбора</div>
             <div class="section-row"><span>Компоненты</span><span class="muted" id="component-count">Подготовка…</span></div>
             <div class="filter-row"><button class="filter-chip active" data-role="all">Все <span id="all-count">0</span></button><button class="filter-chip" data-role="main">Главные</button><button class="filter-chip" data-role="background">Фоновые</button></div>
             <div class="size-row"><span>Детализация</span><div class="size-switch"><button class="active" data-size="L">L</button><button data-size="S">S</button></div></div>
@@ -54,7 +54,7 @@
             <div class="canvas-stage-wrap" id="canvas-stage-wrap">
               <div class="stage-backdrop"></div>
               <div class="canvas-stage" id="canvas-stage">
-                <svg class="composition-svg" id="composition-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Холст композиции"><rect id="canvas-background" width="1200" height="630" fill="#f9f7f3"/><g id="composition-layers"></g></svg>
+                <svg class="composition-svg" id="composition-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 630" role="img" aria-label="Холст композиции"><rect id="canvas-background" width="1200" height="630" fill="#f9f7f3"/><g id="composition-layers"></g></svg>
                 <div class="selection-box" id="selection-box" hidden><span class="resize-handle nw"></span><span class="resize-handle ne"></span><span class="resize-handle sw"></span><span class="resize-handle se"></span><span class="rotate-handle">↻</span></div>
               </div>
               <div class="canvas-empty" id="canvas-empty"><div class="empty-orbit"><span>✳</span></div><b>Холст ждёт твою идею</b><p>Добавь компонент из библиотеки<br />или опиши метафору слева</p><button id="empty-suggest">Подобрать композицию <span>↗</span></button></div>
@@ -70,7 +70,7 @@
             <div class="properties-top"><div><div class="eyebrow">СВОЙСТВА</div><h2 id="property-title">Композиция</h2></div><button class="dots-button">···</button></div>
             <div class="selection-summary" id="selection-summary"><div class="summary-icon">✦</div><div><b>Ничего не выбрано</b><p>Выбери объект на холсте или добавь его из библиотеки</p></div></div>
             <div class="property-section"><div class="property-heading"><span>Роль объекта</span><span class="info-dot" title="Главные объекты сохраняют палитру. Фоновые используют только монохромный оттенок.">i</span></div><div class="role-cards"><button class="role-card active" data-role-choice="main"><span class="role-preview colorful"><i></i><i></i><i></i></span><span><b>Главный</b><small>Цветной объект</small></span><span class="radio-dot"></span></button><button class="role-card" data-role-choice="background"><span class="role-preview monochrome"><i></i><i></i><i></i></span><span><b>Фоновый</b><small>Монохромный</small></span><span class="radio-dot"></span></button></div></div>
-            <div class="property-section transform-section"><div class="property-heading"><span>Трансформация</span><button class="reset-button" id="reset-transform">Сбросить</button></div><div class="transform-grid"><label><span>Позиция X</span><div><input id="pos-x" type="number" value="0" /><small>px</small></div></label><label><span>Позиция Y</span><div><input id="pos-y" type="number" value="0" /><small>px</small></div></label><label><span>Поворот</span><div><input id="rotation" type="number" value="0" /><small>°</small></div></label><label><span>Масштаб</span><div><input id="scale" type="number" value="100" /><small>%</small></div></label></div><div class="lock-note"><span>↗</span> Пропорции объекта сохраняются</div></div>
+            <div class="property-section transform-section"><div class="property-heading"><span>Трансформация</span><button class="reset-button" id="reset-transform">Сбросить поворот</button></div><div class="transform-grid"><label><span>Позиция X</span><div><input id="pos-x" type="number" value="0" /><small>px</small></div></label><label><span>Позиция Y</span><div><input id="pos-y" type="number" value="0" /><small>px</small></div></label><label><span>Поворот</span><div><input id="rotation" type="number" value="0" /><small>°</small></div></label><label><span>Исходный масштаб</span><div><input id="scale" type="number" value="100" disabled /><small>%</small></div></label></div><div class="lock-note"><span>↗</span> Исходные пропорции и масштаб сохраняются</div></div>
             <div class="property-section layer-section"><div class="property-heading"><span>Слои <span class="muted" id="layer-count">0</span></span><button class="layer-menu" id="layer-menu">···</button></div><div class="layer-list" id="layer-list"><div class="no-layers">Слои появятся здесь</div></div></div>
             <div class="properties-bottom"><div class="keyboard-note"><kbd>⌘</kbd><kbd>D</kbd><span>дублировать объект</span></div><div class="keyboard-note"><kbd>⌫</kbd><span>удалить выбранное</span></div></div>
           </aside>

@@ -56,3 +56,13 @@
 - [x] Run source syntax checks and inspect the local browser preview.
 - [ ] User claims the temporary Vercel deployment in their own account; the claim page is open. The temporary URL expires in 60 minutes and currently returns 403 until claimed.
 - [ ] Create a persistent authenticated production deployment and repository link after Vercel/GitHub ownership is established.
+
+## Follow-up implementation and remaining review
+
+- [x] Preserve source path attributes and `defs` references during preview and SVG export; namespace clip/gradient IDs per placed layer.
+- [x] Keep per-object scale fixed; adapt a composition across output formats with a shared uniform scale.
+- [x] Improve palette remapping for the colors present in the supplied boards, including clip/gradient definitions.
+- [x] Require real catalog name/tag matches for automatic assembly; expand metaphor queries through a local alias dictionary.
+- [x] Save layer references instead of serializing complete component geometry to localStorage; render catalog previews on demand.
+- [ ] Visually verify and curate every extracted candidate against the source boards. The input exports are flattened and have no object labels/groups, so spatial clustering alone cannot guarantee that every candidate is a complete original object.
+- [ ] Verify a downloaded SVG in an SVG editor and publish a permanent Vercel deployment. The repository currently has no completed permanent deployment link.
