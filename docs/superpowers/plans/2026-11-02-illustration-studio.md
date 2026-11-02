@@ -64,5 +64,8 @@
 - [x] Improve palette remapping for the colors present in the supplied boards, including clip/gradient definitions.
 - [x] Require real catalog name/tag matches for automatic assembly; expand metaphor queries through a local alias dictionary.
 - [x] Save layer references instead of serializing complete component geometry to localStorage; render catalog previews on demand.
+- [x] Bind collection controls with `querySelectorAll`, keep editor functions at module scope, and start scene-example parsing only when requested.
+- [x] Process source paths in animation-frame batches, avoid per-path computed-style reads, and cache the parsed catalog in IndexedDB.
 - [ ] Visually verify and curate every extracted candidate against the source boards. The input exports are flattened and have no object labels/groups, so spatial clustering alone cannot guarantee that every candidate is a complete original object.
 - [ ] Verify a downloaded SVG in an SVG editor and publish a permanent Vercel deployment. The repository currently has no completed permanent deployment link.
+- [ ] Run a browser interaction check after the loading and button-binding corrections.
