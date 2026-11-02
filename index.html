@@ -12,25 +12,24 @@
     <div class="app-shell">
       <aside class="sidebar">
         <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span><span>forma<span class="brand-dot">.</span></span></div>
-        <div class="workspace-switch"><span class="workspace-avatar">И</span><span><b>Иллюстрации</b><small>личное пространство</small></span><span class="chevron">⌄</span></div>
+        <button class="workspace-switch" id="account-button" type="button"><span class="workspace-avatar" id="account-avatar">И</span><span><b id="account-name">Иллюстрации</b><small id="account-subtitle">личное пространство</small></span><span class="chevron">⌄</span></button>
         <div class="side-label">РАБОЧЕЕ МЕСТО</div>
         <button class="side-link active"><span class="nav-icon grid-icon">▦</span>Конструктор <span class="side-count" id="sidebar-count">—</span></button>
         <button class="side-link" id="open-library"><span class="nav-icon">◫</span>Библиотека <span class="side-count" id="library-nav-count">—</span></button>
         <button class="side-link" id="open-ideas"><span class="nav-icon">✳</span>Примеры</button>
         <div class="side-label side-label-spaced">ВАШ ПРОЕКТ</div>
-        <button class="side-link project-link"><span class="project-dot peach"></span>Смысл в деталях</button>
-        <button class="side-link project-link"><span class="project-dot lilac"></span>Свободная сцена</button>
+        <div id="project-list" class="project-list"></div>
         <button class="side-link add-project"><span class="plus-small">＋</span>Новый проект</button>
         <div class="sidebar-bottom">
           <div class="usage-card"><span class="usage-icon">✦</span><div><b>Библиотека готова</b><p>Исходные SVG остаются векторными при сборке и экспорте.</p></div></div>
-          <button class="profile-button"><span class="profile-avatar">И</span><span><b>Иллюстратор</b><small>Free workspace</small></span><span class="more">···</span></button>
+          <button class="profile-button" id="profile-button"><span class="profile-avatar" id="profile-avatar">И</span><span><b id="profile-name">Иллюстратор</b><small id="profile-subtitle">Локальный профиль</small></span><span class="more">···</span></button>
         </div>
       </aside>
 
       <main class="main-area">
         <header class="topbar">
-          <div class="breadcrumbs"><span>Проекты</span><span class="crumb-slash">/</span><b>Смысл в деталях</b><span class="save-state"><i></i><span id="save-label">Все изменения сохранены</span></span></div>
-          <div class="top-actions"><button class="icon-button" id="undo-button" title="Отменить">↶</button><button class="icon-button" id="redo-button" title="Повторить">↷</button><span class="top-divider"></span><button class="share-button" id="share-button">↗ <span>Поделиться</span></button><button class="export-button" id="export-button"><span>Экспорт SVG</span><span class="export-arrow">↓</span></button></div>
+          <div class="breadcrumbs"><span>Проекты</span><span class="crumb-slash">/</span><b id="project-title">Новый проект</b><span class="save-state"><i></i><span id="save-label">Все изменения сохранены</span></span></div>
+          <div class="top-actions"><button class="icon-button" id="theme-toggle" title="Переключить тему" aria-label="Переключить тему">☾</button><button class="icon-button" id="undo-button" title="Отменить">↶</button><button class="icon-button" id="redo-button" title="Повторить">↷</button><span class="top-divider"></span><button class="share-button" id="share-button">↗ <span>Поделиться</span></button><button class="export-button" id="export-button"><span>Экспорт SVG</span><span class="export-arrow">↓</span></button></div>
         </header>
 
         <div class="editor-layout">
@@ -48,7 +47,7 @@
 
           <section class="canvas-workspace">
             <div class="canvas-header">
-              <div class="canvas-title"><span class="file-icon">▧</span><span><b>Смысл в деталях</b><small>Главный кадр · Версия 04</small></span></div>
+              <div class="canvas-title"><span class="file-icon">▧</span><span><b id="canvas-project-title">Новый проект</b><small>Векторная композиция</small></span></div>
               <div class="canvas-tools"><button id="fit-button" title="Подогнать холст">⤢</button><span class="zoom-label" id="zoom-label">100%</span><span class="tool-divider"></span><button id="grid-button" class="selected" title="Сетка">▦</button><button id="more-canvas" title="Ещё">···</button></div>
             </div>
             <div class="canvas-stage-wrap" id="canvas-stage-wrap">
@@ -80,5 +79,6 @@
     <div class="toast" id="toast" role="status"></div>
     <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" id="modal"><button class="modal-close" id="modal-close">×</button><div class="modal-content" id="modal-content"></div></div></div>
     <script src="/src/app.js" defer></script>
+    <script src="/src/workspace.js" defer></script>
   </body>
 </html>
